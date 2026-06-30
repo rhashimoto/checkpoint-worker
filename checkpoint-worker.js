@@ -18,13 +18,23 @@ const DB_PATH = new URLSearchParams(location.search).get('path');
     createSyncHandle(dirHandle, fileName + '-wa1'),
   ]);
 
-  // Create the WriteAhead instance.
+  // Create a WriteAhead instance. This is the component of OPFSWriteAheadVFS
+  // that manages the WAL files and performs checkpoints. It will keep its
+  // view of the database current by listening for broadcast messages from
+  // other connections, and it will perform checkpoints when appropriate.
   const writeAhead = new WriteAhead(DB_PATH, dbHandle, walHandles, {
+    // These options can be changed from the defaults if desired.
+    // journalSizeLimit: 1_000,
     // backstopInterval: 30_000,
-    // journalSizeLimit: 1_000
   });
 })();
 
+/**
+ * Utility function to create a sync access handle for a file in a directory.
+ * @param {FileSystemDirectoryHandle} dirHandle 
+ * @param {string} fileName
+ * @returns {Promise<FileSystemSyncAccessHandle>}
+ */
 async function createSyncHandle(dirHandle, fileName) {
   const fileHandle = await dirHandle.getFileHandle(fileName, { create: true });
   return await fileHandle.createSyncAccessHandle({ mode: 'readwrite-unsafe' });
