@@ -1,4 +1,10 @@
 {
   "name": "checkpoint-worker",
-  "packageManager": "yarn@4.17.0"
+  "packageManager": "yarn@4.17.0",
+  "devDependencies": {
+    "@web/dev-server": "^0.4.6"
+  },
+  "dependencies": {
+    "wa-sqlite": "https://github.com/rhashimoto/wa-sqlite.git"
+  }
 }
