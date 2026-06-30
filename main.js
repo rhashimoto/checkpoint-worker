@@ -1,4 +1,4 @@
-import * as Comlink from 'comlink';
+import * as Comlink from 'https://unpkg.com/comlink/dist/esm/comlink.mjs';
 
 const DB_PATH = '/my-database';
 

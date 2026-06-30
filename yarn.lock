@@ -658,6 +658,9 @@ __metadata:
     "@web/dev-server": "npm:^0.4.6"
     comlink: "npm:^4.4.2"
     wa-sqlite: "https://github.com/rhashimoto/wa-sqlite.git"
+  dependenciesMeta:
+    wa-sqlite@1.1.1:
+      unplugged: true
   languageName: unknown
   linkType: soft
 

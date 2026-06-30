@@ -2,7 +2,7 @@
   "name": "checkpoint-worker",
   "packageManager": "yarn@4.17.0",
   "scripts": {
-    "start": "web-dev-server --node-resolve"
+    "start": "web-dev-server"
   },
   "devDependencies": {
     "@web/dev-server": "^0.4.6"
@@ -10,5 +10,10 @@
   "dependencies": {
     "comlink": "^4.4.2",
     "wa-sqlite": "https://github.com/rhashimoto/wa-sqlite.git"
+  },
+  "dependenciesMeta": {
+    "wa-sqlite@1.1.1": {
+      "unplugged": true
+    }
   }
 }

@@ -1,4 +1,4 @@
-import { WriteAhead } from 'wa-sqlite/src/examples/WriteAhead.js';
+import { WriteAhead } from './.yarn/unplugged/wa-sqlite-https-cbc83456f9/node_modules/wa-sqlite/src/examples/WriteAhead.js';
 
 const DB_PATH = new URLSearchParams(location.search).get('path');
 

@@ -1,8 +1,8 @@
-import * as Comlink from 'comlink';
+import * as Comlink from 'https://unpkg.com/comlink/dist/esm/comlink.mjs';
 
-import SQLiteESMFactory from 'wa-sqlite/dist/wa-sqlite.mjs';
-import * as SQLite from 'wa-sqlite/src/sqlite-api.js';
-import { OPFSWriteAheadVFS } from 'wa-sqlite/src/examples/OPFSWriteAheadVFS.js';
+import SQLiteESMFactory from './.yarn/unplugged/wa-sqlite-https-cbc83456f9/node_modules/wa-sqlite/dist/wa-sqlite.mjs';
+import * as SQLite from './.yarn/unplugged/wa-sqlite-https-cbc83456f9/node_modules/wa-sqlite/src/sqlite-api.js';
+import { OPFSWriteAheadVFS } from './.yarn/unplugged/wa-sqlite-https-cbc83456f9/node_modules/wa-sqlite/src/examples/OPFSWriteAheadVFS.js';
 
 const DB_PATH = new URLSearchParams(location.search).get('path');
 const POLLING_INTERVAL = 50; // milliseconds
