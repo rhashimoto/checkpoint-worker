@@ -19,7 +19,12 @@ const OUTPUT_TIME_FORMAT = {
     const dbExec = Comlink.wrap(dbWorker);
 
     // Turn off auto checkpoint.
-    // await dbExec(`PRAGMA wal_auto_checkpoint=0`);
+    await dbExec(`PRAGMA wal_autocheckpoint=0`);
+
+    // Start the checkpoint Worker.
+    const checkpointWorker = new Worker(
+      'checkpoint-worker.js?path=' + encodeURIComponent(DB_PATH),
+      { type: 'module' });
 
     // Create a table.
     await dbExec(`CREATE TABLE IF NOT EXISTS t (key INTEGER PRIMARY KEY, value)`);

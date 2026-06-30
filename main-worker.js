@@ -35,15 +35,15 @@ Comlink.expose(async function(sql) {
 
 dbReady.then(async () => {
   // Get another OPFS handle to the database file.
-  let dbHandle = await navigator.storage.getDirectory();
+  let dirHandle = await navigator.storage.getDirectory();
   const pathComponents = DB_PATH.split('/').filter(Boolean);
   const fileName = pathComponents.pop();
   for (const component of pathComponents) {
-    dbHandle = await dbHandle.getDirectoryHandle(component);
+    dirHandle = await dirHandle.getDirectoryHandle(component);
   }
-  dbHandle = await dbHandle.getFileHandle(fileName);
+  dirHandle = await dirHandle.getFileHandle(fileName);
 
-  const syncHandle = await dbHandle.createSyncAccessHandle({ mode: 'readwrite-unsafe' });
+  const syncHandle = await dirHandle.createSyncAccessHandle({ mode: 'readwrite-unsafe' });
   function getChangeCounter(syncHandle) {
     const buffer = new DataView(new ArrayBuffer(4));
     const nBytes = syncHandle.read(buffer, { at: 24 });
