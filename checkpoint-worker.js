@@ -1,9 +1,12 @@
 import { WriteAhead } from './.yarn/unplugged/wa-sqlite-https-cbc83456f9/node_modules/wa-sqlite/src/examples/WriteAhead.js';
 
+// Parse the database path from the Worker URL query string.
 const DB_PATH = new URLSearchParams(location.search).get('path');
 
 (async () => {
-  // Parse database path to get directory handle and file name.
+  // Parse database file path to get directory handle and file name.
+  // The path is expected to be a UNIX-style path, e.g. "/my-database"
+  // or "/some/dir/my-database", with no escaped characters.
   let dirHandle = await navigator.storage.getDirectory();
   const pathComponents = DB_PATH.split('/').filter(Boolean);
   const fileName = pathComponents.pop();

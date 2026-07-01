@@ -40,6 +40,7 @@ Comlink.expose(async function(sql) {
 });
 
 // Detect checkpoints by polling the change counter in the database header.
+// This is only here to verify that checkpoints are happening.
 dbReady.then(async () => {
   // Get another OPFS handle to the database file.
   let dirHandle = await navigator.storage.getDirectory();

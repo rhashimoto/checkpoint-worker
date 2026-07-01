@@ -18,14 +18,18 @@ const OUTPUT_TIME_FORMAT = {
       { type: 'module' });
     const dbExec = Comlink.wrap(dbWorker);
 
-    // Use an empty query to ensure the database is opened and ready.
+    // Use an empty query to ensure the database is opened and idle before
+    // starting the checkpoint Worker, just in case there are any lurking
+    // race conditions.
     await dbExec('');
+
     // Start the checkpoint Worker.
     const checkpointWorker = new Worker(
       'checkpoint-worker.js?path=' + encodeURIComponent(DB_PATH),
       { type: 'module' });
 
-    // Turn off auto checkpoint.
+    // Turn off auto checkpoint on the main Worker with the database
+    // connection. All checkpoints will be handled by the checkpoint Worker.
     await dbExec(`PRAGMA wal_autocheckpoint=0`);
 
     // Create a table.
